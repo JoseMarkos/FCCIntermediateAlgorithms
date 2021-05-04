@@ -1,16 +1,11 @@
-function destroyer(arr : Number[], ...args : number[]) {
+function destroyer(arr : number[], ...args : number[]) {
     let solution : number[] = [];
-  //  console.log( typeof args + ' hao' );
-    console.log( typeof arr + ' hao' );
-    ///console.log( typeof [1,23] + ' hao' );
 
- /*    args.forEach(x => {
-        if (typeof x === "number") {
-            if (!arr.includes(x)) {
-                solution.push(x);
-            }
+    arr.forEach(x => {
+        if (!args.includes(x)) {
+            solution.push(x);
         }
-    }); */
+    });
 
     return solution;
 }
