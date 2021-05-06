@@ -1,44 +1,31 @@
-
-interface HtmlEntitiesI  {
-  "&": string,
-  "<": string,
-  ">": string,
-  '"': string,
-  "'": string
+interface StringArray {
+  [index: string]: string;
 }
 
-function convertHTML(str : string) {
-
-  const htmlEntities : HtmlEntitiesI = {
+function convertHTML(str: string) {
+  const htmlEntities: StringArray = {
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
     '"': "&quot;",
-    "'": "&apos;"
+    "'": "&apos;",
   };
 
-  console.log(typeof htmlEntities);
+  let arrStr = str.split('');
 
-  let arrStr = [...str];
-
-  const resoult : string[]  = arrStr.map((x : string) => 
-  {
+  const resoult: string[] = arrStr.map((x) => {
     if (htmlEntities.hasOwnProperty(x)) {
       for (const key in htmlEntities) {
         if (key === x) {
-          console.log(key);
-          return htmlEntities.key;
+          return htmlEntities[key];
         }
-      }  
+      }
     }
 
     return x;
-    });
+  });
 
-  console.log(resoult);
-
-
-  return str.match(/[&<>"']/g);
+  return resoult.join("");
 }
 
 console.log(convertHTML("Dolce & Gabbana"));

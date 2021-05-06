@@ -1,0 +1,4 @@
+{"include": ["ConvertHTMLEntities.ts"], "compilerOptions": {
+  "rootDir": ".",
+  "outDir": "./dist"
+}}
