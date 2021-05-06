@@ -11,19 +11,11 @@ function convertHTML(str: string) {
     "'": "&apos;",
   };
 
-  let arrStr = str.split('');
+  let arrStr = str.split("");
 
-  const resoult: string[] = arrStr.map((x) => {
-    if (htmlEntities.hasOwnProperty(x)) {
-      for (const key in htmlEntities) {
-        if (key === x) {
-          return htmlEntities[key];
-        }
-      }
-    }
-
-    return x;
-  });
+  const resoult: string[] = arrStr.map((x) =>
+    htmlEntities.hasOwnProperty(x) ? htmlEntities[x] : x
+  );
 
   return resoult.join("");
 }
