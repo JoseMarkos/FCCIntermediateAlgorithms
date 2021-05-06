@@ -36,3 +36,7 @@ The unique numbers should be sorted by their original order, but the final array
 
 Check the assertion tests for examples.
 
+
+### Convert HTML Entities
+
+Convert the characters &, <, >, " (double quote), and ' (apostrophe), in a string to their corresponding HTML entities.
