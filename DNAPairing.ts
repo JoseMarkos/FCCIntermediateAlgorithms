@@ -19,10 +19,8 @@ function findPair(str : string, arr : string[][]) : string[] {
 
 function pairElement(str : string) {
   let arr = str.split('');
-  const result = arr.map(
-    x => {
-      return findPair(x, pairs);
-    }
+  const result = arr.map(x => 
+    findPair(x, pairs)
   );
 
   return result;

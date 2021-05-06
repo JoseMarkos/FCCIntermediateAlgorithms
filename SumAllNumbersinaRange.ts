@@ -7,9 +7,9 @@ function sumAll(arr : number[]) : number {
     arrAddends.push(index);    
   }
 
-  return arrAddends.reduce((previous, current) => {
-    return previous + current;
-  });
+  return arrAddends.reduce((previous, current) =>
+    previous + current
+  );
 }
 
 sumAll([1, 4]);

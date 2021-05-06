@@ -9,16 +9,20 @@ function fearNotLetter(str: string) {
   let current = reference.search(arrStr[0]);
   let result = "";
 
-  let test = arrStr
-    .forEach((x) => {
-      let letterIndex = reference.search(x);
+  arrStr.forEach((x) => {
+    const letterIndex = reference.search(x);
+    const isNotFirstLetter = current !== letterIndex;
+    const isNotTheNextInsequence = current !== letterIndex - 1;
+    
+    if (
+      isNotFirstLetter &&
+      isNotTheNextInsequence
+    ) {
+      result = reference[letterIndex - 1];
+    }
 
-      if (current != letterIndex && current !== letterIndex - 1) {
-        result = reference[letterIndex - 1];
-      }
-
-      current = letterIndex;
-    });
+    current = letterIndex;
+  }); 
 
   return result;
 }

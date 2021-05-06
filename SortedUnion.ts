@@ -1,6 +1,6 @@
 function diffArray(original: number[], arr: number[]) {
-  let filter = arr.filter(x => !original.includes(x));
-  return original.concat(filter);
+  let filtered = arr.filter(x => !original.includes(x));
+  return original.concat(filtered);
 }
 
 function uniteUnique(...args : number[][]) {
