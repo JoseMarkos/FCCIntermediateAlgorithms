@@ -6,16 +6,9 @@ function convertHTML(str) {
         '"': "&quot;",
         "'": "&apos;"
     };
-    var arrStr = str.split('');
+    var arrStr = str.split("");
     var resoult = arrStr.map(function (x) {
-        if (htmlEntities.hasOwnProperty(x)) {
-            for (var key in htmlEntities) {
-                if (key === x) {
-                    return htmlEntities[key];
-                }
-            }
-        }
-        return x;
+        return htmlEntities.hasOwnProperty(x) ? htmlEntities[x] : x;
     });
     return resoult.join("");
 }
