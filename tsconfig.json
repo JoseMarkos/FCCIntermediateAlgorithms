@@ -1,4 +1,8 @@
-{"include": ["ConvertHTMLEntities.ts"], "compilerOptions": {
-  "rootDir": ".",
-  "outDir": "./dist"
-}}
+{
+ // "include": ["ConvertHTMLEntities.ts"], 
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "./dist",
+    "lib": ["ES7", "DOM"]
+  }
+}

@@ -1,4 +1,4 @@
-const sumAll = (arr : number[]) => {
+const sumAllElements = (arr : number[]) => {
   return arr.reduce((previous, current) =>
     previous + current
   );

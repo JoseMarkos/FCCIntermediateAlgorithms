@@ -1,4 +1,4 @@
-function diffArray(original: number[], arr: number[]) {
+function getUniqueElements(original: number[], arr: number[]) {
   let filtered = arr.filter(x => !original.includes(x));
   return original.concat(filtered);
 }
@@ -7,7 +7,7 @@ function uniteUnique(...args : number[][]) {
   let original : number[] = [];
 
   for (let index = 0; index < args.length; index++) {
-    original = diffArray(original, args[index]);
+    original = getUniqueElements(original, args[index]);
   }
 
   return original;
