@@ -9,6 +9,14 @@ interface NumberArray {
   [index: string]: number;
 }
 
+const getANumberArray = ():NumberArray => {
+  return {
+    "2": 0,
+    "3": 0,
+    "5": 0,
+    "7": 0,
+  }
+}
 
 const isFactorOfTwo = (n: number): boolean => n % 2 === 0;
 
@@ -36,12 +44,7 @@ const getFirstFactor = (n: number) => {
 }
 
 const getFactorsObjet = (n: number): NumberArray => {
-  const obj: NumberArray = {
-    "2": 0,
-    "3": 0,
-    "5": 0,
-    "7": 0,
-  };
+  const obj: NumberArray = getANumberArray();
 
   if (isOnOfTheExeptions(n)) {
     obj[n] = 1;
@@ -49,13 +52,13 @@ const getFactorsObjet = (n: number): NumberArray => {
   }
 
   const firstFactor = getFirstFactor(n);
-  const divided = n / firstFactor;
+  const divided     = n / firstFactor;
 
   obj[firstFactor]++;
 
   if (divided !== 1) {
     const nextObj = getFactorsObjet(divided);
-    // suma
+    
     obj["2"] += nextObj["2"];
     obj["3"] += nextObj["3"];
     obj["5"] += nextObj["5"];
@@ -65,32 +68,50 @@ const getFactorsObjet = (n: number): NumberArray => {
   return obj;
 };
 
-const getLCMCollection = (obj: NumberArray): number[] => {
+const getLCMCollection = (arr: NumberArray[]): number[] => {
+  const obj: NumberArray        = getANumberArray();
+  let collection: number[]      = [];
+
+  arr.forEach((x: NumberArray) => {
+    for (const key in x) {
+      const max = Math.max(obj[key], x[key]);
+      obj[key]  = max;
+    }
+  });
   
-  return [];
+  for (const key in obj) {
+    console.log(`${key} ${obj[key]}`);
+    let current = 1;
+
+    while(obj[key] >= current) {
+      collection.push(Number(key));
+      current++
+    }
+  }
+
+  return collection;
 };
 
-function smallestCommons(arr: number[]) {
-  const max = Math.max(...arr);
-  const min = Math.min(...arr);
-  const genItems = items(min);
+function smallestCommons(arr: number[]): number {
+  const max       = Math.max(...arr);
+  const min       = Math.min(...arr);
+  const genItems  = items(min);
 
-  let current = genItems.next().value;
-  let factors: number[] = [2,3];
+  let current: number           = genItems.next().value;
+  let collection: NumberArray[] = [];
+  let factors: number[]         = [];
 
   while (current <= max) {
-    console.log(current);
-
     if (current != 1) {
-      console.log(getFactorsObjet(current));
+      collection.push(getFactorsObjet(current));
     }
-
 
     current = genItems.next().value;
   }
 
-  console.log(factors);
+  factors = getLCMCollection(collection);
+
   return factors.reduce((a, c) => a * c);
 }
 
-console.log(smallestCommons([1, 10]));
+console.log(smallestCommons([1, 13]));
