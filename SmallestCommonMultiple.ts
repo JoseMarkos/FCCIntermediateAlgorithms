@@ -94,4 +94,3 @@ function smallestCommons(arr: number[]) {
 }
 
 console.log(smallestCommons([1, 10]));
-"kk";
