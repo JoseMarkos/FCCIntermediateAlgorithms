@@ -1,79 +1,89 @@
-function sumPrimes(num: number) {
-  let result : number[] = [];
+const getSixBasedNumersOne = (n: number) : number => {
+  const multi =  6 * n;
+  return multi - 1;
+};
 
-  const items = function*() {
-    let n = 0;
-    while (true) {
-      yield n++;
-    }
+const getSixBasedNumersTwo = (n: number) : number => {
+  const multi =  6 * n;
+  return multi + 1;
+};
+
+const getFirstCollection = (max: number) => {
+  if (max == 2) {
+    return [max];
   }
 
-  const getFactorial = (n : number) : number => {
-    const itemsGenerator : Generator = items();
-    let current = itemsGenerator.next().value;
-    let factorial = 1;
+  if (max == 3 || max == 4) {
+    return [2, max];
+  }
 
-    while(current < n) {
-      current = itemsGenerator.next().value;
-      factorial *= current;
+  let collection = [2, 3];
+
+  for (let index = 1; collection[collection.length - 1] < max; index++) {
+    let nextPrime = getSixBasedNumersOne(index);
+
+    if (nextPrime > max) {
+      break;
     }
 
-    return factorial;
-  };
+    collection.push(nextPrime);
+    
+    if (collection[collection.length - 1] < max) {
+      nextPrime = getSixBasedNumersTwo(index);
 
-  console.log(getFactorial(4 - 1) + " el current");
-
-  const primes = function*() {
-    let n = 3;
-    while (true) {
-      n += 2;
-      if((n + 2) % n !== 0) {
-        console.log(27 % 25 + " n");
-        yield n;
+      if (nextPrime > max) {
+        break;
       }
+
+      collection.push(nextPrime);
     }
   }
 
-  const ssprimes = function*() {
-    yield 2;
-    yield* genPrimes;
-  }
-
-  const genPrimes : Generator = primes();
-
-  console.log(genPrimes.next());
-  console.log(genPrimes.next());
-  console.log(genPrimes.next());
-  console.log(genPrimes.next());
-  console.log(genPrimes.next());
-  console.log(genPrimes.next());
-  console.log(genPrimes.next());
-  console.log(genPrimes.next());
-  console.log(genPrimes.next());
-  console.log(genPrimes.next());
-  console.log(genPrimes.next());
-  console.log(genPrimes.next());
-  
-  const isPrime = (n: number) : boolean => {
-    if (n === 1) {
-      return false;
-    }
-
-    if (n === 2) {
-      return true;
-    }
-    
-    if (n > 2 && n % 2 === 0) {
-      return false;
-    }
-
-    const maxDivisor = Math.floor(Math.sqrt(n));
-
-    
-    return true;
-  }
-
-  return result;
+  return collection;
 }
 
-console.log(sumPrimes(10));
+const getBooleansCollection = (collection: number[]): boolean[] => {
+  return Array.from(collection, x => true);
+}
+
+const getPrimes = (max: number) => {
+  const firstCollection = getFirstCollection(max);
+  const booleanCollection = getBooleansCollection(firstCollection);
+  
+  const getNextFilterCollection = (collection: number[], start: number): void => {
+    const nextPrime = collection[start];
+    let index = 1;
+    let indexTwo = 1;
+    let item = 6 * index * nextPrime - nextPrime;
+    let itemTwo = 6 * index * nextPrime + nextPrime;
+  
+    while(collection.includes(item)) {
+      booleanCollection[collection.indexOf(item)] = false;
+      index++;
+      item = 6 * index * nextPrime - nextPrime;
+    }
+
+    while(collection.includes(itemTwo)) {
+      booleanCollection[collection.indexOf(itemTwo)] = false;
+      indexTwo++;
+      itemTwo = 6 * indexTwo * nextPrime + nextPrime;
+    }
+  }
+
+  firstCollection.forEach(x => {
+    if(booleanCollection[firstCollection.indexOf(x)]) {
+      getNextFilterCollection(firstCollection, firstCollection.indexOf(x));
+    }
+  })
+  
+  return firstCollection.filter(x => booleanCollection[firstCollection.indexOf(x)] === true);
+}
+
+function sumPrimes(num: number) {
+  console.log(num);
+
+  return getPrimes(num).reduce((a, c) => a + c);
+}
+
+sumPrimes(10);
+sumPrimes(71);
