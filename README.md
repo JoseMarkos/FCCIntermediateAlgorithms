@@ -113,3 +113,9 @@ Then return the rest of the array once the condition is satisfied, otherwise, ar
 Flatten a nested array. You must account for varying levels of nesting.
 
 Your solution should not use the Array.prototype.flat() or Array.prototype.flatMap() methods.
+
+### Binary Agents
+
+Return an English translated sentence of the passed binary string.
+
+The binary string will be space separated.
