@@ -1,12 +1,6 @@
-const getSixBasedNumersOne = (n: number) : number => {
-  const multi =  6 * n;
-  return multi - 1;
-};
+const getSixBasedNumersOne = (n: number) : number => 6 * n - 1;
 
-const getSixBasedNumersTwo = (n: number) : number => {
-  const multi =  6 * n;
-  return multi + 1;
-};
+const getSixBasedNumersTwo = (n: number) : number => 6 * n + 1;
 
 const getFirstCollection = (max: number) => {
   if (max == 2) {
@@ -14,7 +8,7 @@ const getFirstCollection = (max: number) => {
   }
 
   if (max == 3 || max == 4) {
-    return [2, max];
+    return [2, 3];
   }
 
   let collection = [2, 3];
@@ -42,9 +36,7 @@ const getFirstCollection = (max: number) => {
   return collection;
 }
 
-const getBooleansCollection = (collection: number[]): boolean[] => {
-  return Array.from(collection, x => true);
-}
+const getBooleansCollection = (collection: number[]): boolean[] => Array.from(collection, x => true);
 
 const getPrimes = (max: number) => {
   const firstCollection = getFirstCollection(max);
@@ -74,15 +66,13 @@ const getPrimes = (max: number) => {
     if(booleanCollection[firstCollection.indexOf(x)]) {
       getNextFilterCollection(firstCollection, firstCollection.indexOf(x));
     }
-  })
+  });
   
   return firstCollection.filter(x => booleanCollection[firstCollection.indexOf(x)] === true);
 }
 
 function sumPrimes(num: number) {
-  console.log(num);
-
-  return getPrimes(num).reduce((a, c) => a + c);
+ getPrimes(num).reduce((a, c) => a + c);
 }
 
 sumPrimes(10);
