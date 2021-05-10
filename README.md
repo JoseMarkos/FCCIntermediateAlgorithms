@@ -101,3 +101,9 @@ Find the smallest common multiple of the provided parameters that can be evenly 
 The range will be an array of two numbers that will not necessarily be in numerical order.
 
 For example, if given 1 and 3, find the smallest common multiple of both 1 and 3 that is also evenly divisible by all numbers between 1 and 3. The answer here would be 6.
+
+### Drop it
+
+Given the array arr, iterate through and remove each element starting from the first element (the 0 index) until the function func returns true when the iterated element is passed through it.
+
+Then return the rest of the array once the condition is satisfied, otherwise, arr should be returned as an empty array.
