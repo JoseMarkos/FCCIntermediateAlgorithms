@@ -1,9 +1,3 @@
-interface hey {
-  [index: string] : number
-}
-
-type hola = hey | number[];
-
 function getCollection(obj:any):any[] {
   let collection:object[] = [];
   
