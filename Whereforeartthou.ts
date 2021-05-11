@@ -1,25 +1,22 @@
-function whatIsInAName(collection: any[], source: any) {
-  let arr: any[] = [];
+interface TheObj {
+  [index:string] : ThisContext
+}
 
-  collection.forEach((x) => {
-    for (const key in x) {
-      //  console.log(key);
-      //  console.log(x[key]);
-      }
-  });
+type ThisContext = string | number | null;
 
-  arr = collection.filter(x => {
-    for (const key in x) {
-        for (const sourceKey in source) {
-            return key ===  sourceKey && x[key] === source[sourceKey];
-            console.log(key ===  sourceKey && x[key] === source[sourceKey]);
-            console.log(x[key]);
+function whatIsInAName(collection: TheObj[], source: TheObj) {
+  let arr: TheObj[] = [];
+  // Only change code below this line
+  collection.forEach(x => {
+    for (const key in source) {
+      if (Object.prototype.hasOwnProperty.call(x, key)) {
+        const sourceElement = source[key];
+        if (sourceElement === x[key]) {
+          arr.push(x);
         }
+      }
     }
   });
-
-
-  // arr = collection.filter(x => x.last === source.last);
   // Only change code above this line
   return arr;
 }
