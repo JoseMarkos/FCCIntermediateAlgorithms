@@ -1,4 +1,4 @@
-# FCCIntermediateAlgorithms
+# FreeCodeCamp Intermediate Algorithms
 
 ### Sum All Numbers in a RangePassed
 
