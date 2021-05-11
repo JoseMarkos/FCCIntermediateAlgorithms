@@ -26,20 +26,18 @@ function spinalCase(str: string):string {
   let match = str.match(/[a-z]+/gi);
 
   if (match) {
-    let arr = [...match];
-
-    if (arr.length === 1) {
-      solution = secondFilter(str, arr);
+    if (match.length === 1) {
+      solution = secondFilter(str, match);
       return solution.join('-').toLocaleLowerCase();
     }
 
-    solution = [...arr];
+    solution = [...match];
 
-    arr.forEach(x => {
+    match.forEach(x => {
       const match = x.match(/[A-Z]/g);
       if (match && match.length > 1) {
-        const filtered = secondFilter(x, arr);
-        solution[arr.indexOf(x)] = filtered.join('-').toLocaleLowerCase();
+        const filtered = secondFilter(x, match);
+        solution[match.indexOf(x)] = filtered.join('-').toLocaleLowerCase();
       }
     });
   }
