@@ -129,3 +129,15 @@ In other words, you are given an array collection of objects. The predicate pre 
 In JavaScript, truthy values are values that translate to true when evaluated in a Boolean context.
 
 Remember, you can access object properties through either dot notation or [] notation.
+
+### Map the DebrisPassed
+
+Return a new array that transforms the elements' average altitude into their orbital periods (in seconds).
+
+The array will contain objects in the format {name: 'name', avgAlt: avgAlt}.
+
+You can read about orbital periods on Wikipedia.
+
+The values should be rounded to the nearest whole number. The body being orbited is Earth.
+
+The radius of the earth is 6367.4447 kilometers, and the GM value of earth is 398600.4418 km3s-2.
