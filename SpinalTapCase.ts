@@ -1,34 +1,33 @@
 const secondFilter = (myStr: string, arr: string[]): string[] => {
   let resolt:string[] | null = [];
-  const regx = /[A-Z][a-z]+/g;
+  const CapitalInitialWordregx = /[A-Z][a-z]+/g;
     
   if (myStr.match(/^[A-Z]/)) {
-    resolt = myStr.match(regx);
+    resolt = myStr.match(CapitalInitialWordregx);
     return resolt ? resolt : [];
   }
   
-  let initial = null;
+  const match = myStr.match(/[a-z]+/);
 
-  if (myStr) {
-    initial = myStr.match(/[a-z]+/);
-    initial = initial ? initial[0] : null;
-    resolt  = myStr.match(regx);
-  }
-  
-  if (resolt && initial) {
-    resolt = [initial, ...resolt];
+  if (match) {
+    let initial             = match[0];
+    let CapitalInitialWordsArray = myStr.match(CapitalInitialWordregx);
+
+    if (CapitalInitialWordsArray) {
+      resolt = [initial, ...CapitalInitialWordsArray];
+    }
   }
 
-  return resolt ? resolt : [];
+  return resolt;
 }
 
 function spinalCase(str: string):string {
   let solution:string[] = [];
-  let arr = str.match(/[a-z]+/gi);
+  let match = str.match(/[a-z]+/gi);
 
-  if (arr) {
-    console.log('-------------');
-    
+  if (match) {
+    let arr = [...match];
+
     if (arr.length === 1) {
       solution = secondFilter(str, arr);
       return solution.join('-').toLocaleLowerCase();
@@ -36,24 +35,16 @@ function spinalCase(str: string):string {
 
     solution = [...arr];
 
-    solution.forEach(x => {
-      const element = x ? x : '';
+    arr.forEach(x => {
       const match = x.match(/[A-Z]/g);
-
       if (match && match.length > 1) {
-        if (arr) {
-          const filtered = secondFilter(element, arr);
-          solution[solution.indexOf(element)] = filtered.join('-').toLocaleLowerCase();
-        }
+        const filtered = secondFilter(x, arr);
+        solution[arr.indexOf(x)] = filtered.join('-').toLocaleLowerCase();
       }
     });
   }
  
-  if (solution) {
-    return solution.join('-').toLocaleLowerCase();
-  }
-
-  return '';
+  return solution.join('-').toLocaleLowerCase();
 }
 
 console.log(spinalCase("This Is Spinal Tap"));
